@@ -24,8 +24,7 @@ export default class NewsSearch extends Component {
       e.preventDefault();
       this.setState({ articles, loading: true });
 
-      const articles = await
-      getSearchedArticles(this.state.search);
+      const articles = await getSearchedArticles(this.state.search);
       this.setState({ articles, loading: false, initialLoad: false });
     }
 
@@ -35,7 +34,7 @@ export default class NewsSearch extends Component {
 
         
       return (
-        <>
+        <div>
           <h1>Daily Tribune</h1>
           <Search
             search={search}
@@ -43,11 +42,12 @@ export default class NewsSearch extends Component {
             onSubmit={this.handleSubmit}
           />
           {initialLoad
-            ? <h2>Top Headlines</h2>
-            : <h2>Here are your search results for '{search}':</h2>
+            ? <h1>Top Headlines</h1>
+            // eslint-disable-next-line react/no-unescaped-entities
+            : <h1>Here are your search results for '{search}':</h1>
           }
           <ArticleList search={search} articles={articles}/>
-        </>  
+        </div>  
       );
     }
 }

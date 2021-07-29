@@ -5,7 +5,8 @@ const Article = ({ title, author, description }) => (
   <>
     {title
       ? <h2>{title}</h2>
-      : <h2>There is not a title...</h2>}
+      : <h2>There is not a title...</h2>
+    }
     {author
       ? (<h3>By {author}</h3>)
       : (<h3>By Unknown Author</h3>)

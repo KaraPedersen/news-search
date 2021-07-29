@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`ArticleList component renders ArticleList 1`] = `
-<DocumentFragment>
-  <ul>
-    Sorry, something went wrong...
-  </ul>
-</DocumentFragment>
-`;

@@ -1,7 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-
 import React from 'react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import NewsSearch from './NewsSearch';
@@ -14,20 +13,16 @@ describe('NewsSearch container', () => {
     screen.getByText('Loading...');
 
     const mockSearch = jest.fn();
-    //test search input
-    // const setSearch = jest.fn(value => { });
     // eslint-disable-next-line max-len
-    const { queryByPlaceholderText } = render(<Search mockSearch={mockSearch} />);
+    const { queryByPlaceholderText } = render(<Search mockSearch={mockSearch}/>);
     // eslint-disable-next-line max-len
     const searchInput = queryByPlaceholderText('What information would you like?');
     fireEvent.change(searchInput, { target: { value: 'test' } });
-
     expect(searchInput.value).toBe('test');
 
     return waitFor(async () => {
       const ul = await screen.findByRole('list');
       expect(ul).not.toBeEmptyDOMElement();
-
     }, 6000);
   });
 });
