@@ -8,11 +8,11 @@ export default class NewsSearch extends Component {
     search: '',
     articles: [],
     loading: true,
+    initialLoad: true,
   };
 
   async componentDidMount() {
     const articles = await getTopHeadlines();
-
     this.setState({ articles, loading: false });
   }
 
@@ -26,24 +26,27 @@ export default class NewsSearch extends Component {
 
       const articles = await
       getSearchedArticles(this.state.search);
-      this.setState({ articles, loading: false });
+      this.setState({ articles, loading: false, initialLoad: false });
     }
 
     render() {
-      const { search, articles, loading } = this.state;
+      const { search, articles, loading, initialLoad } = this.state;
       if(loading) return <h1> Loading...</h1>;
 
         
       return (
         <>
+          <h1>Daily Tribune</h1>
           <Search
             search={search}
             onChange={this.handleChange}
-            onSearch={this.handleSearch}
             onSubmit={this.handleSubmit}
           />
-
-          <ArticleList articles={articles}/>
+          {initialLoad
+            ? <h2>Top Headlines</h2>
+            : <h2>Here are your search results for '{search}':</h2>
+          }
+          <ArticleList search={search} articles={articles}/>
         </>  
       );
     }
