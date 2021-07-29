@@ -1,39 +1,53 @@
 import React, { Component } from 'react'; 
 import ArticleList from '../components/articles/ArticleList';
 import Search from '../components/search/Search';
-import { getArticles } from '../services/news-utils';
+import { getSearchedArticles, getTopHeadlines } from '../services/news-utils';
 
 export default class NewsSearch extends Component {
   state = {
     search: '',
     articles: [],
+    loading: true,
+    initialLoad: true,
   };
+
+  async componentDidMount() {
+    const articles = await getTopHeadlines();
+    this.setState({ articles, loading: false });
+  }
 
   handleChange = ({ target }) => {
     this.setState({ search: target.value });
+  };
 
     handleSubmit = async (e) => {
       e.preventDefault();
-      const articles = await
-      getArticles(this.state.search);
-      this.setState({ articles });
+      this.setState({ articles, loading: true });
+
+      const articles = await getSearchedArticles(this.state.search);
+      this.setState({ articles, loading: false, initialLoad: false });
     }
 
     render() {
-      const { search, articles, loading } = this.state;
+      const { search, articles, loading, initialLoad } = this.state;
+      if(loading) return <h1> Loading...</h1>;
 
+        
       return (
-        <>
-         <Search
-           search={search}
-           onChange={this.handleChange}
-           onSearch={this.handleSearch}
-           onSubmit={this.handleSubmit}
-        />
-
-        <ArticleList articles={articles}/>
-      </>  
+        <div>
+          <h1>Daily Tribune</h1>
+          <Search
+            search={search}
+            onChange={this.handleChange}
+            onSubmit={this.handleSubmit}
+          />
+          {initialLoad
+            ? <h1>Top Headlines</h1>
+            // eslint-disable-next-line react/no-unescaped-entities
+            : <h1>Here are your search results for '{search}':</h1>
+          }
+          <ArticleList search={search} articles={articles}/>
+        </div>  
       );
     }
-  }
 }
