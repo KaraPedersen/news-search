@@ -9,7 +9,7 @@ const Search = ({ search, onChange, onSearch, onSubmit }) => (
       type="search"
       name="search"
       value={search}
-      onChange{onChange}
+      onChange={onChange}
     />
     <button>Submit</button>  
   </form>
