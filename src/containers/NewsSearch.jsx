@@ -11,6 +11,7 @@ export default class NewsSearch extends Component {
 
   handleChange = ({ target }) => {
     this.setState({ search: target.value });
+  };
 
     handleSubmit = async (e) => {
       e.preventDefault();
@@ -24,16 +25,15 @@ export default class NewsSearch extends Component {
 
       return (
         <>
-         <Search
-           search={search}
-           onChange={this.handleChange}
-           onSearch={this.handleSearch}
-           onSubmit={this.handleSubmit}
-        />
+          <Search
+            search={search}
+            onChange={this.handleChange}
+            onSearch={this.handleSearch}
+            onSubmit={this.handleSubmit}
+          />
 
-        <ArticleList articles={articles}/>
-      </>  
+          <ArticleList articles={articles}/>
+        </>  
       );
     }
-  }
 }

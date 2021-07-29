@@ -1,5 +1,6 @@
 import React from 'react';
+import NewsSearch from '../../containers/NewsSearch';
 
 export default function App() {
-  return <h1>Hello Darkness my old Friend</h1>;
+  return <NewsSearch/>;
 }
