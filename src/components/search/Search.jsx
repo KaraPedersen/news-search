@@ -8,6 +8,7 @@ const Search = ({ search, onChange, onSubmit }) => (
       id="search"
       type="search"
       name="search"
+      placeholder="What information would you like?"
       value={search}
       onChange={onChange}
     />
@@ -16,9 +17,9 @@ const Search = ({ search, onChange, onSubmit }) => (
 );
 
 Search.propTypes = {
-  search: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired
+  search: PropTypes.string,
+  onChange: PropTypes.func,
+  onSubmit: PropTypes.func,
 };
 
 export default Search;

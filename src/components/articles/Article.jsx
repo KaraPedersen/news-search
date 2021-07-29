@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Article = ({ title, author, description }) => (
-
   <>
-    <h2>{title}</h2>
+    {title
+      ? <h2>{title}</h2>
+      : <h2>There is not a title...</h2>}
     {author
       ? (<h3>By {author}</h3>)
       : (<h3>By Unknown Author</h3>)
@@ -16,7 +17,7 @@ const Article = ({ title, author, description }) => (
 );
 
 Article.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   author: PropTypes.string,
   description: PropTypes.string
 };
